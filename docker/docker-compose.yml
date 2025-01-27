@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  prometheus:
+    build: prome/
+    ports:
+      - 9090:9090
+    networks:
+      - monitoring
+
+  grafana:
+    build: grafana/
+    ports:
+      - 3000:3000
+    networks:
+      - monitoring
+
+networks:
+  monitoring:

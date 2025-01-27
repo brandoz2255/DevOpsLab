@@ -1,0 +1,7 @@
+---
+- name: Install k3s on target nodes
+  hosts: ubuntu_vms
+  become: yes
+  tasks:
+    - name: Run k3s installation script
+      ansible.builtin.script: ./install_k3s.sh
