@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  prometheus:
+    build: .
+    ports:
+      - 9090:9090

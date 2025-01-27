@@ -1,0 +1,36 @@
+---
+- name: Deploy Kubernetes Manifests to VMs
+  hosts: ubuntu_vms
+  become: yes
+  tasks:
+    - name: Create directory for Kubernetes manifests
+      file:
+        path: /tmp/k8s-manifests/
+        state: directory
+        mode: "0755"   
+
+    - name: Copy Kubernetes manifests to target node
+      copy:
+        src: /home/dulc3/Documents/GitHub/DevSecOps/homelab/k8s/prometheus-deployment.yaml
+        dest: /tmp/k8s-manifests/prometheus-deployment.yaml
+        src: /home/dulc3/Documents/GitHub/DevSecOps/homelab/k8s/prometheus-service.yaml
+        dest: /tmp/k8s-manifests/prometheus-service.yaml
+        mode: "0644"
+
+    - name: Create the monitoring namespace
+      shell: | 
+        k3s kubectl create namespace monitoring || echo "Namespace monitoring already exists"
+      args: 
+        executable: /bin/bash
+
+    - name: Check if kubectl is installed
+      command: kubectl version --client
+      register: kubectl_check
+      failed_when: kubectl_check.rc != 0
+
+    - name: Apply Kubernetes manifests
+      shell: |
+        k3s kubectl apply -f /tmp/k8s-manifests/prometheus-deployment.yaml
+        k3s kubectl apply -f /tmp/k8s-manifests/prometheus-service.yaml
+      args:
+        executable: /bin/bash
