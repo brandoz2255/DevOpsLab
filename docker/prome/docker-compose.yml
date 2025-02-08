@@ -1,7 +1,11 @@
-version: '3'
 
 services:
   prometheus:
-    build: .
+    image: prom/prometheus:latest  # Official Prometheus image
+    container_name: prometheus
     ports:
-      - 9090:9090
+      - 9090:9090  # Map Prometheus' default port
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml  # Config file
+    restart: unless-stopped
+

@@ -1,0 +1,5 @@
+- name: Set authorized key file from local user
+  authorized_key:
+    user: DevOps 
+    state: present
+    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/dftd.pub') }}"

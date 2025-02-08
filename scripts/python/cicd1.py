@@ -51,4 +51,3 @@ for command in verification_commands:
         print(f"[ERROR] Verification command '{command}' failed on ubuntu-vm1!")
 
 print("\n[INFO] All steps completed. Your environment is set up and verified!")
-
