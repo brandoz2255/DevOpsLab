@@ -6,7 +6,7 @@
     user_name: DevOps
     shell: /bin/bash
     user_password: "{{ 'DevSecOps' | password_hash('sha512') }}"
-    user_group: engineers
+    user_group: engineer
     docker_packages:
       - apt-transport-https
       - ca-certificates
@@ -25,7 +25,7 @@
         password: "{{ user_password }}"
         shell: "{{ shell }}"
         groups: "{{ user_group }}"
-        append: yes
+        append: true
         state: present
 
     - name: Add DevOps user to sudoers
@@ -55,10 +55,10 @@
       apt:
         name: docker-ce
         state: present
-        update_cache: yes
+        update_cache: true
 
     - name: Start and enable Docker service
       systemd:
         name: docker
-        enabled: yes
+        enabled: true
         state: started

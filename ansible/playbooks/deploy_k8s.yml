@@ -15,12 +15,12 @@
         dest: "{{ item.dest }}"
         mode: "0644"
       loop: # cluster-role.yaml config-map.yaml deployment.yaml namespace.yaml prometheus-pvc.yaml service.yaml
-        - { src: "/home/dulc3/Documents/GitHub/DevSecOps/homelab/k8s/prometheus/cluster-role.yaml", dest: "/tmp/k8s-manifests/prometheus/cluster-role.yaml" }
-        - { src: "/home/dulc3/Documents/GitHub/DevSecOps/homelab/k8s/prometheus/config-map.yaml", dest: "/tmp/k8s-manifests/prometheus/config-map.yaml" }
-        - { src: "/home/dulc3/Documents/GitHub/DevSecOps/homelab/k8s/prometheus/deployment.yaml", dest: "/tmp/k8s-manifests/prometheus/deployment.yaml" }
-        - { src: "/home/dulc3/Documents/GitHub/DevSecOps/homelab/k8s/prometheus/namespace.yaml", dest: "/tmp/k8s-manifests/prometheus/namespace.yaml" }
-        - { src: "/home/dulc3/Documents/GitHub/DevSecOps/homelab/k8s/prometheus/prometheus-pvc.yaml", dest: "/tmp/k8s-manifests/prometheus/prometheus-pvc.yaml" }
-        - { src: "/home/dulc3/Documents/GitHub/DevSecOps/homelab/k8s/prometheus/service.yaml", dest: "/tmp/k8s-manifests/prometheus/service.yaml" }
+        - { src: "/home/dulc3/Documents/GitHub/DevSecOps/homelab/k8s/worker-node/prometheus/cluster-role.yaml", dest: "/tmp/k8s-manifests/prometheus/cluster-role.yaml" }
+        - { src: "/home/dulc3/Documents/GitHub/DevSecOps/homelab/k8s/worker-node/prometheus/config-map.yaml", dest: "/tmp/k8s-manifests/prometheus/config-map.yaml" }
+        - { src: "/home/dulc3/Documents/GitHub/DevSecOps/homelab/k8s/worker-node/prometheus/deployment.yaml", dest: "/tmp/k8s-manifests/prometheus/deployment.yaml" }
+        - { src: "/home/dulc3/Documents/GitHub/DevSecOps/homelab/k8s/worker-node/prometheus/namespace.yaml", dest: "/tmp/k8s-manifests/prometheus/namespace.yaml" }
+        - { src: "/home/dulc3/Documents/GitHub/DevSecOps/homelab/k8s/worker-node/prometheus/prometheus-pvc.yaml", dest: "/tmp/k8s-manifests/prometheus/prometheus-pvc.yaml" }
+        - { src: "/home/dulc3/Documents/GitHub/DevSecOps/homelab/k8s/worker-node/prometheus/service.yaml", dest: "/tmp/k8s-manifests/prometheus/service.yaml" }
 
     - name: Create the monitoring namespace
       shell: |
@@ -35,12 +35,12 @@
 
     - name: Apply Kubernetes manifests
       shell: |
-        k3s kubectl apply -f /tmp/k8s-manifests/prometheus/namespace.yaml
-        k3s kubectl apply -f /tmp/k8s-manifests/prometheus/cluster-role.yaml
-        k3s kubectl apply -f /tmp/k8s-manifests/prometheus/prometheus-pvc.yaml
-        k3s kubectl apply -f /tmp/k8s-manifests/prometheus/config-map.yaml
-        k3s kubectl apply -f /tmp/k8s-manifests/prometheus/deployment.yaml
-        k3s kubectl apply -f /tmp/k8s-manifests/prometheus/service.yaml
+         k3s kubectl apply -f /tmp/k8s-manifests/prometheus/namespace.yaml
+         k3s kubectl apply -f /tmp/k8s-manifests/prometheus/cluster-role.yaml
+         k3s kubectl apply -f /tmp/k8s-manifests/prometheus/prometheus-pvc.yaml
+         k3s kubectl apply -f /tmp/k8s-manifests/prometheus/config-map.yaml
+         k3s kubectl apply -f /tmp/k8s-manifests/prometheus/deployment.yaml
+         k3s kubectl apply -f /tmp/k8s-manifests/prometheus/service.yaml
 
       args:
-        executable: /bin/bash 
+        executable: /bin/bash

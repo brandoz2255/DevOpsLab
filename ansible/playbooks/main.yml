@@ -1,0 +1,15 @@
+---
+# First, set up SSH keys for secure successfully
+- import_playbook: ubuntu-vm.yml
+- import_playbook: ssh_keys.yml
+
+# Then run OS configuration tasks
+#- import_playbook: ubuntu-vm.yml
+
+# Follow up with network configurations (e.g., static IP settings, routing, etc.)
+#- import_playbook: k3s.yml
+
+# Then apply security hardening and other related settings
+#- import_playbook: deploy_k8s.yml
+
+
